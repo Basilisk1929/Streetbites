@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - StreetBites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen py-12">
+
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg">
+        <div class="text-center">
+            <a href="index.html">
+                <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-24 w-auto mx-auto mb-4">
+            </a>
+            <h2 id="form-title" class="text-3xl font-bold text-gray-900">Join Our Community</h2>
+        </div>
+
+        <form id="register-form" class="space-y-4">
+            <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <!-- Organization name will be inserted here by JS if needed -->
+            <div id="org-field-container"></div>
+            <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <input type="password" placeholder="Create Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <button id="submit-button" type="submit" class="w-full text-white font-bold py-3 px-4 rounded-lg transition duration-300">Create Account</button>
+        </form>
+
+        <p class="text-center text-gray-600">
+            Already have an account? <a href="login.html" class="font-medium text-blue-600 hover:underline">Log in</a>
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userType = urlParams.get('type') || 'individual'; // Default to individual
+
+            const formTitle = document.getElementById('form-title');
+            const orgFieldContainer = document.getElementById('org-field-container');
+            const submitButton = document.getElementById('submit-button');
+
+            if (userType === 'organization') {
+                formTitle.textContent = 'Organization Registration';
+                orgFieldContainer.innerHTML = `<input type="text" placeholder="Organization Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">`;
+                submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                formTitle.textContent = 'Individual Registration';
+                submitButton.classList.add('bg-green-600', 'hover:bg-green-700');
+            }
+        });
+
+        // Placeholder for registration logic
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // On successful registration, redirect to the donation page
+            window.location.href = 'donate.html';
+        });
+    </script>
+
+</body>
+</html>

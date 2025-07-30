@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Donation - StreetBites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-lg p-8 space-y-6 bg-white rounded-xl shadow-lg">
+        <div class="text-center">
+            <a href="index.html">
+                 <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-24 w-auto mx-auto mb-4">
+            </a>
+            <h2 class="text-3xl font-bold text-gray-900">Make a New Donation</h2>
+            <p class="text-gray-600">Thank you for your generosity. Please fill out the details below.</p>
+        </div>
+        
+        <form id="donation-form" class="space-y-6">
+            <div>
+                <label for="food-name" class="block text-sm font-medium text-gray-700">Name of Food</label>
+                <input type="text" id="food-name" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+            <div>
+                <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity (e.g., 5 meals, 10 kg)</label>
+                <input type="text" id="quantity" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+            <div>
+                <label for="cooking-date" class="block text-sm font-medium text-gray-700">Date of Cooking</label>
+                <input type="date" id="cooking-date" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Submit Donation</button>
+        </form>
+    </div>
+
+    <script>
+         document.getElementById('donation-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Show a simple alert for now.
+            alert('Thank you! Your donation has been recorded.');
+            // Redirect back to the homepage.
+            window.location.href = 'index.html';
+        });
+    </script>
+
+</body>
+</html>
