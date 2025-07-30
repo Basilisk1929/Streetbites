@@ -1,42 +1,26 @@
-/* Base body styles */
 body {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
 }
 
-/* Custom font for headings */
 .font-serif {
     font-family: 'Playfair Display', serif;
 }
 
-/* Background image for the hero section */
 .hero-bg {
     background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
 }
 
-/* Styles for all modal pop-ups */
-.modal-overlay {
-    display: none; /* Hidden by default - This fixes the bug */
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 50;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-}
-
-/* Animation for FAB options appearing */
-#fab-options button {
+/* FAB transition */
+#fab-options a, #fab-options button {
     transition: all 0.3s ease-out;
     opacity: 0;
     transform: translateY(10px);
 }
 
-/* Styles for when the FAB is open */
-#fab-container.open #fab-options button {
+#fab-container.open #fab-options a, #fab-container.open #fab-options button {
     opacity: 1;
     transform: translateY(0);
 }
