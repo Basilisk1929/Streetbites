@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StreetBites - Feeding Hope, Building Tomorrow</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -16,15 +13,13 @@
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-6">
-                <!-- Enlarged Logo -->
-                <img src="https://storage.googleapis.com/gemini-prod-us-west1-409903530249/uploaded/STREET.png" alt="StreetBites Logo" class="h-32 w-auto">
-                <!-- Enlarged Text -->
+            <a href="index.html" class="flex items-center space-x-6">
+                <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-32 w-auto">
                 <div class="hidden sm:block">
                     <p class="font-bold text-4xl text-blue-800">StreetBites</p>
                     <p class="text-lg text-gray-600">Feeding Hope, Building Tomorrow</p>
                 </div>
-            </div>
+            </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#mission" class="text-gray-600 hover:text-blue-600 transition">Our Mission</a>
                 <a href="#how-it-works" class="text-gray-600 hover:text-blue-600 transition">How It Works</a>
@@ -60,12 +55,12 @@
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
                     <p class="font-bold text-gray-800 text-xl text-center">Ready to make an impact?</p>
-                    <button onclick="showLoginPage('individual')" class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-lg">
+                    <a href="register.html?type=individual" class="w-full md:w-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-xl">
                         Donate as an Individual
-                    </button>
-                    <button onclick="showLoginPage('organization')" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-lg">
+                    </a>
+                    <a href="register.html?type=organization" class="w-full md:w-auto text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-xl">
                         Donate as an Organization
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -141,60 +136,23 @@
             <p class="text-gray-500 mt-12">&copy; 2024 StreetBites. All Rights Reserved.</p>
         </div>
     </footer>
-
-
-    <!-- MODALS & OVERLAYS -->
     
-    <!-- Login/Signup Page -->
-    <div id="login-overlay" class="modal-overlay">
-        <div id="login-page" class="w-full max-w-md bg-white rounded-xl shadow-lg relative">
-            <!-- Content will be populated by JavaScript -->
-        </div>
-    </div>
-
-    <!-- Donation Form Page -->
-    <div id="donation-overlay" class="modal-overlay">
-        <div id="donation-page" class="w-full max-w-lg bg-white rounded-xl shadow-lg relative">
-             <!-- Content will be populated by JavaScript -->
-        </div>
-    </div>
-    
-    <!-- Confirmation Modal -->
-    <div id="confirmation-modal" class="modal-overlay">
-        <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white text-center">
-            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
-                <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            </div>
-            <h3 class="text-lg leading-6 font-medium text-gray-900">Donation Submitted!</h3>
-            <div class="mt-2 px-7 py-3">
-                <p class="text-sm text-gray-500">
-                    Thank you for your generosity! A confirmation has been sent to your email.
-                </p>
-            </div>
-            <div class="items-center px-4 py-3">
-                <button id="ok-btn" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
-                    OK
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Floating Action Button (FAB) -->
     <div id="fab-container" class="fixed bottom-8 right-8 z-50 flex flex-col items-end">
         <!-- FAB Options -->
         <div id="fab-options" class="hidden flex flex-col items-end space-y-2 mb-3">
-             <button onclick="showLoginPage('individual')" class="flex items-center space-x-3 bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 rounded-full shadow-md transition duration-300">
+             <a href="register.html?type=individual" class="flex items-center space-x-3 bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 rounded-full shadow-md transition duration-300">
                 <span>Individual</span>
                 <div class="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </div>
-            </button>
-            <button onclick="showLoginPage('organization')" class="flex items-center space-x-3 bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 rounded-full shadow-md transition duration-300">
+            </a>
+            <a href="register.html?type=organization" class="flex items-center space-x-3 bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 rounded-full shadow-md transition duration-300">
                 <span>Organization</span>
                  <div class="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-full">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                  </div>
-            </button>
+            </a>
         </div>
         <!-- Main FAB Button -->
         <button id="fab" class="w-16 h-16 bg-red-500 hover:bg-red-600 rounded-full text-white flex items-center justify-center shadow-lg transition-transform duration-300 transform hover:scale-110">
@@ -203,7 +161,6 @@
         </button>
     </div>
 
-    <!-- Custom JavaScript -->
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
