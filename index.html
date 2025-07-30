@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreetBites - Feeding Hope, Building Tomorrow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://storage.googleapis.com/gemini-prod-us-west1-409903530249/uploaded/STREET.png" alt="StreetBites Logo" class="h-16 w-auto">
+                <div class="hidden sm:block">
+                    <p class="font-bold text-xl text-blue-800">StreetBites</p>
+                    <p class="text-sm text-gray-600">Feeding Hope, Building Tomorrow</p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#mission" class="text-gray-600 hover:text-blue-600 transition">Our Mission</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-blue-600 transition">How It Works</a>
+                <a href="#quotes" class="text-gray-600 hover:text-blue-600 transition">Get Inspired</a>
+            </div>
+            <div class="md:hidden">
+                 <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pt-2 pb-4">
+            <a href="#mission" class="block py-2 text-gray-600 hover:text-blue-600">Our Mission</a>
+            <a href="#how-it-works" class="block py-2 text-gray-600 hover:text-blue-600">How It Works</a>
+            <a href="#quotes" class="block py-2 text-gray-600 hover:text-blue-600">Get Inspired</a>
+        </div>
+    </header>
+
+    <!-- Donation Strip -->
+    <section id="donate-strip" class="bg-gray-100 py-4 border-b border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                <p class="font-bold text-gray-700 text-lg">Ready to help?</p>
+                <button onclick="showLoginPage('individual')" class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    Individual Donation
+                </button>
+                <button onclick="showLoginPage('organization')" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    Organization Donation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg text-white">
+            <div class="bg-black bg-opacity-50 min-h-[60vh] flex items-center">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4">Join the fight against hunger.</h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">We connect those with surplus food to those who need it most, creating a community of compassion and support.</p>
+                    <a href="#how-it-works" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition text-lg">Learn How</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Our Mission</h2>
+                        <p class="text-gray-600 mb-4">At StreetBites, our mission is simple: to ensure no one goes to bed hungry. We leverage technology and community spirit to create a bridge between excess food and the millions who face food insecurity every day.</p>
+                        <p class="text-gray-600">By redirecting surplus meals, we not only feed the hungry but also combat food waste, contributing to a healthier planet.</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Volunteers helping" class="rounded-lg shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="bg-gray-100 py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-12">How You Can Help</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <div class="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Sign Up</h3>
+                        <p class="text-gray-600">Create an account as an individual or an organization. It's quick, easy, and the first step to making a difference.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">List Your Donation</h3>
+                        <p class="text-gray-600">Have surplus food? Fill out our simple form with details about the meal, quantity, and when it was prepared.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                         <div class="bg-red-100 text-red-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Change a Life</h3>
+                        <p class="text-gray-600">Our network of volunteers picks up your donation and delivers it to a local shelter or community in need, providing a warm meal and hope.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="quotes" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+             <h2 class="text-3xl md:text-4xl font-serif font-bold mb-12">Words to Inspire</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="mb-8">
+                    <p class="font-serif text-2xl italic">"The best way to find yourself is to lose yourself in the service of others."</p>
+                    <p class="mt-2 text-gray-400">- Mahatma Gandhi</p>
+                </div>
+                 <div class="mb-8">
+                    <p class="font-serif text-2xl italic">"No one has ever become poor by giving."</p>
+                    <p class="mt-2 text-gray-400">- Anne Frank</p>
+                </div>
+                 <div class="mb-8 md:col-span-2">
+                    <p class="font-serif text-2xl italic">"We make a living by what we get, but we make a life by what we give."</p>
+                    <p class="mt-2 text-gray-400">- Winston Churchill</p>
+                </div>
+            </div>
+            <p class="text-gray-500 mt-12">&copy; 2024 StreetBites. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- MODALS & OVERLAYS -->
+    
+    <!-- Login/Signup Page -->
+    <div id="login-overlay" class="modal-overlay">
+        <div id="login-page" class="w-full max-w-md bg-white rounded-xl shadow-lg relative">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Donation Form Page -->
+    <div id="donation-overlay" class="modal-overlay">
+        <div id="donation-page" class="w-full max-w-lg bg-white rounded-xl shadow-lg relative">
+             <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal-overlay">
+        <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white text-center">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Donation Submitted!</h3>
+            <div class="mt-2 px-7 py-3">
+                <p class="text-sm text-gray-500">
+                    Thank you for your generosity! A confirmation has been sent to your email.
+                </p>
+            </div>
+            <div class="items-center px-4 py-3">
+                <button id="ok-btn" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Modal Navigation ---
+        const loginOverlay = document.getElementById('login-overlay');
+        const donationOverlay = document.getElementById('donation-overlay');
+        const confirmationModal = document.getElementById('confirmation-modal');
+
+        const loginPage = document.getElementById('login-page');
+        const donationPage = document.getElementById('donation-page');
+
+        function hideAllOverlays() {
+            loginOverlay.style.display = 'none';
+            donationOverlay.style.display = 'none';
+            confirmationModal.style.display = 'none';
+        }
+
+        function closeOverlays(e) {
+             if (e.target === loginOverlay || e.target === donationOverlay || e.target === confirmationModal) {
+                hideAllOverlays();
+            }
+        }
+        
+        window.addEventListener('click', closeOverlays);
+
+
+        // --- Login/Signup Page Logic ---
+        function showLoginPage(type) {
+            const isIndividual = type === 'individual';
+            const title = isIndividual ? 'Individual' : 'Organization';
+            const accentColor = isIndividual ? 'green' : 'blue';
+
+            loginPage.innerHTML = `
+                <div class="p-8 space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-3xl font-bold text-gray-900">${title} Portal</h2>
+                        <button onclick="hideAllOverlays()" class="text-gray-400 hover:text-gray-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+
+                    <div class="flex border-b border-gray-200">
+                        <button id="login-tab" class="flex-1 py-2 text-center font-medium border-b-2 border-${accentColor}-600 text-${accentColor}-600">Login</button>
+                        <button id="signup-tab" class="flex-1 py-2 text-center font-medium text-gray-500">Sign Up</button>
+                    </div>
+
+                    <form id="login-form" class="space-y-6">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        <input type="password" placeholder="Password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        <button type="submit" class="w-full bg-${accentColor}-600 hover:bg-${accentColor}-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Login</button>
+                    </form>
+
+                    <form id="signup-form" class="hidden space-y-4">
+                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        ${!isIndividual ? '<input type="text" placeholder="Organization Name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">' : ''}
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        <input type="password" placeholder="Create Password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        <button type="submit" class="w-full bg-${accentColor}-600 hover:bg-${accentColor}-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Create Account</button>
+                    </form>
+                </div>
+            `;
+            loginOverlay.style.display = 'flex';
+
+            const loginTab = document.getElementById('login-tab');
+            const signupTab = document.getElementById('signup-tab');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+
+            loginTab.addEventListener('click', () => {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                loginTab.classList.add(`border-${accentColor}-600`, `text-${accentColor}-600`);
+                loginTab.classList.remove('text-gray-500');
+                signupTab.classList.remove(`border-${accentColor}-600`, `text-${accentColor}-600`);
+                signupTab.classList.add('text-gray-500');
+            });
+
+            signupTab.addEventListener('click', () => {
+                signupForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+                signupTab.classList.add(`border-${accentColor}-600`, `text-${accentColor}-600`);
+                signupTab.classList.remove('text-gray-500');
+                loginTab.classList.remove(`border-${accentColor}-600`, `text-${accentColor}-600`);
+                loginTab.classList.add('text-gray-500');
+            });
+            
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                hideAllOverlays();
+                showDonationPage(type); 
+            });
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                hideAllOverlays();
+                showDonationPage(type);
+            });
+        }
+
+        // --- Donation Page Logic ---
+        function showDonationPage(type) {
+            const isIndividual = type === 'individual';
+            const accentColor = isIndividual ? 'green' : 'blue';
+            
+            donationPage.innerHTML = `
+                <div class="p-8 space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-3xl font-bold text-gray-900">New Donation</h2>
+                        <button onclick="hideAllOverlays()" class="text-gray-400 hover:text-gray-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    <form id="donation-form" class="space-y-6">
+                        <div>
+                            <label for="food-name" class="block text-sm font-medium text-gray-700">Name of Food</label>
+                            <input type="text" id="food-name" required class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        </div>
+                        <div>
+                            <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity (e.g., 5 meals, 10 kg)</label>
+                            <input type="text" id="quantity" required class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        </div>
+                        <div>
+                            <label for="cooking-date" class="block text-sm font-medium text-gray-700">Date of Cooking</label>
+                            <input type="date" id="cooking-date" required class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-${accentColor}-500">
+                        </div>
+                        <button type="submit" class="w-full bg-${accentColor}-600 hover:bg-${accentColor}-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Submit Donation</button>
+                    </form>
+                </div>
+            `;
+            donationOverlay.style.display = 'flex';
+
+            const donationForm = document.getElementById('donation-form');
+            donationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                hideAllOverlays();
+                showConfirmation();
+            });
+        }
+        
+        // --- Confirmation Modal Logic ---
+        const okBtn = document.getElementById('ok-btn');
+
+        function showConfirmation() {
+            confirmationModal.style.display = 'flex';
+        }
+
+        okBtn.onclick = function() {
+            hideAllOverlays();
+        }
+
+    </script>
+</body>
+</html>
