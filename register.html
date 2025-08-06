@@ -13,17 +13,20 @@
     <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg">
         <div class="text-center">
             <a href="index.html">
-                <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-24 w-auto mx-auto mb-4">
+                <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-48 w-auto mx-auto mb-4">
             </a>
             <h2 id="form-title" class="text-3xl font-bold text-gray-900">Join Our Community</h2>
         </div>
 
+        <!-- Error Message -->
+        <div id="error-message" class="hidden text-red-500 text-center p-2 bg-red-100 rounded-lg"></div>
+
         <form id="register-form" class="space-y-4">
-            <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <input type="text" id="full-name" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             <!-- Organization name will be inserted here by JS if needed -->
             <div id="org-field-container"></div>
-            <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-            <input type="password" placeholder="Create Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <input type="email" id="email" placeholder="Email Address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <input type="password" id="password" placeholder="Create Password (min. 6 characters)" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             <button id="submit-button" type="submit" class="w-full text-white font-bold py-3 px-4 rounded-lg transition duration-300">Create Account</button>
         </form>
 
@@ -32,30 +35,90 @@
         </p>
     </div>
 
-    <script>
+    <!-- Firebase SDK (Modular v9+) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAMn9PRXrK81nFp1QTTKHvewKnhUd7iTPc",
+            authDomain: "streetbites-8b424.firebaseapp.com",
+            projectId: "streetbites-8b424",
+            storageBucket: "streetbites-8b424.appspot.com",
+            messagingSenderId: "569856554214",
+            appId: "1:569856554214:web:f3d27401ae42b169af3727"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const registerForm = document.getElementById('register-form');
+        const fullNameInput = document.getElementById('full-name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const errorMessage = document.getElementById('error-message');
+
+        let userType = 'individual'; // Default
+
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const userType = urlParams.get('type') || 'individual'; // Default to individual
-
+            const typeFromUrl = urlParams.get('type');
+            
             const formTitle = document.getElementById('form-title');
             const orgFieldContainer = document.getElementById('org-field-container');
             const submitButton = document.getElementById('submit-button');
 
-            if (userType === 'organization') {
+            if (typeFromUrl === 'organization') {
+                userType = 'organization';
                 formTitle.textContent = 'Organization Registration';
-                orgFieldContainer.innerHTML = `<input type="text" placeholder="Organization Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">`;
+                orgFieldContainer.innerHTML = `<input type="text" id="org-name" placeholder="Organization Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">`;
                 submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
             } else {
+                userType = 'individual';
                 formTitle.textContent = 'Individual Registration';
                 submitButton.classList.add('bg-green-600', 'hover:bg-green-700');
             }
         });
 
-        // Placeholder for registration logic
-        document.getElementById('register-form').addEventListener('submit', (e) => {
+        registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // On successful registration, redirect to the donation page
-            window.location.href = 'donate.html';
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const fullName = fullNameInput.value;
+            
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // User created in Authentication. Now, save their info to Firestore.
+                    const user = userCredential.user;
+                    const userData = {
+                        uid: user.uid,
+                        email: user.email,
+                        fullName: fullName,
+                        userType: userType,
+                        createdAt: serverTimestamp()
+                    };
+
+                    if (userType === 'organization') {
+                        const orgNameInput = document.getElementById('org-name');
+                        userData.organizationName = orgNameInput.value;
+                    }
+                    
+                    // Set the document in the 'users' collection
+                    return setDoc(doc(db, 'users', user.uid), userData);
+                })
+                .then(() => {
+                    console.log('User registered and data saved to Firestore!');
+                    window.location.href = 'donate.html'; // Redirect to donation page
+                })
+                .catch((error) => {
+                    errorMessage.textContent = error.message;
+                    errorMessage.classList.remove('hidden');
+                    console.error('Registration Error:', error);
+                });
         });
     </script>
 
