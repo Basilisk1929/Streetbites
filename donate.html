@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Donation - StreetBites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-6">
+                <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-32 w-auto">
+                <div class="hidden sm:block">
+                    <p class="font-bold text-4xl text-blue-800">StreetBites</p>
+                    <p class="text-lg text-gray-600">Feeding Hope, Building Tomorrow</p>
+                </div>
+            </a>
+        </nav>
+    </header>
+
+    <main class="py-12">
+        <div class="w-full max-w-2xl mx-auto p-8 space-y-6 bg-white rounded-xl shadow-lg">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">New Donation Form</h2>
+                <p class="text-gray-600 mt-2">Thank you for your generosity. Please fill out the details below.</p>
+            </div>
+            
+            <!-- Success Message -->
+            <div id="success-message" class="hidden text-green-700 text-center p-4 bg-green-100 rounded-lg">
+                <h3 class="font-bold">Donation Submitted Successfully!</h3>
+                <p>Thank you for making a difference. You will be redirected to the homepage shortly.</p>
+            </div>
+
+            <form id="donation-form" class="space-y-4">
+                <input type="hidden" id="donor-type" name="donor-type">
+                
+                <h3 class="text-lg font-semibold text-gray-800 border-b pb-2">Your Details</h3>
+                <div>
+                    <label for="donor-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="donor-name" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label for="donor-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="donor-email" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label for="donor-address" class="block text-sm font-medium text-gray-700">Pickup Address</label>
+                    <textarea id="donor-address" required rows="3" class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                </div>
+
+                <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 pt-4">Food Details</h3>
+                <div>
+                    <label for="food-name" class="block text-sm font-medium text-gray-700">Name of Food</label>
+                    <input type="text" id="food-name" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity (e.g., 5 meals, 10 kg)</label>
+                    <input type="text" id="quantity" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label for="cooking-date" class="block text-sm font-medium text-gray-700">Date of Cooking</label>
+                    <input type="date" id="cooking-date" required class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <button type="submit" id="submit-button" class="w-full text-white font-bold py-3 px-4 rounded-lg transition duration-300">Submit Donation</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="donate.js" type="module"></script>
+</body>
+</html>
