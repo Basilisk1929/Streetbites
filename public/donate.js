@@ -35,7 +35,7 @@ donationForm.addEventListener('submit', async (e) => {
     const recaptchaScript = document.querySelector('script[src^="https://www.google.com/recaptcha/api.js"]');
     const RECAPTCHA_SITE_KEY = recaptchaScript.src.split('render=')[1];
 
-    if (!RECAPTCHA_SITE_KEY || RECAPTCHA_SITE_KEY === "6LcX7MQrAAAAAAyUfWyz_UYqw6XOaHQPxVPZxx8D") {
+    if (!RECAPTCHA_SITE_KEY || RECAPTCHA_SITE_KEY === "YOUR_SITE_KEY_HERE") {
         showFeedback("reCAPTCHA Site Key is not configured. Please add it to donate.html.", "error");
         submitButton.disabled = false;
         submitButton.textContent = 'Submit Donation';
@@ -61,12 +61,13 @@ donationForm.addEventListener('submit', async (e) => {
 
             // Handle success
             console.log(result.data.message);
-            showFeedback('Thank you! Your donation has been submitted successfully.', 'success');
+            showFeedback('Thank you! Your donation has been submitted successfully. Redirecting home...', 'success');
             donationForm.reset();
-            
-            // Restore the button's original state after success
-            submitButton.disabled = false;
-            submitButton.textContent = 'Submit Donation';
+
+            // *** NEW: Redirect after a delay ***
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 4000); // Wait 4 seconds before redirecting
 
         });
     } catch (error) {
