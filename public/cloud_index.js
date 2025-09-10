@@ -31,7 +31,7 @@ exports.sendDonationConfirmation = functions.firestore
       // Construct the email message
       const msg = {
         to: userEmail,
-        from: "your-verified-email@example.com", // IMPORTANT: Replace with your verified SendGrid email
+        from: "streetbites.pccoer@gmail.com", // IMPORTANT: Replace with your verified SendGrid email
         subject: "Thank you for your donation to StreetBites!",
         html: `
           <h1>Thank you, ${userName}!</h1>
