@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreetBites - Feeding Hope, Building Tomorrow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-6">
+                <img src="STREET-removebg-preview.png" alt="StreetBites Logo" class="h-32 w-auto">
+                <div class="hidden sm:block">
+                    <p class="font-bold text-4xl text-blue-800">StreetBites</p>
+                    <p class="text-lg text-gray-600">Feeding Hope, Building Tomorrow</p>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#mission" class="text-gray-600 hover:text-blue-600 transition">Our Mission</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-blue-600 transition">How It Works</a>
+                <a href="#quotes" class="text-gray-600 hover:text-blue-600 transition">Get Inspired</a>
+            </div>
+            <div class="md:hidden">
+                 <button id="mobile-menu-button" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 pt-2 pb-4">
+            <a href="#mission" class="block py-2 text-gray-600 hover:text-blue-600">Our Mission</a>
+            <a href="#how-it-works" class="block py-2 text-gray-600 hover:text-blue-600">How It Works</a>
+            <a href="#quotes" class="block py-2 text-gray-600 hover:text-blue-600">Get Inspired</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg text-white">
+            <div class="bg-black bg-opacity-50 min-h-[70vh] flex items-center">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4">Join the fight against hunger.</h1>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">We connect those with surplus food to those who need it most, creating a community of compassion and support.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Strip -->
+        <section id="donate-strip" class="bg-gray-100 py-6 border-b border-t border-gray-200 shadow-inner">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <p class="font-bold text-gray-800 text-xl text-center">Ready to make an impact?</p>
+                    <a href="donate.html?type=individual" class="w-full md:w-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-xl">
+                        Donate as an Individual
+                    </a>
+                    <a href="donate.html?type=organization" class="w-full md:w-auto text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-xl">
+                        Donate as an Organization
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Our Mission</h2>
+                        <p class="text-gray-600 mb-4">At StreetBites, our mission is simple: to ensure no one goes to bed hungry. We leverage technology and community spirit to create a bridge between excess food and the millions who face food insecurity every day.</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070&auto=format&fit=crop" alt="Volunteers helping" class="rounded-lg shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="bg-gray-100 py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-12">How You Can Help</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">1. Tell Us About Your Food</h3>
+                        <p class="text-gray-600">Click a "Donate" button and fill out a simple form on the next page with your contact info and details about the meal.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">2. We Arrange Pickup</h3>
+                        <p class="text-gray-600">Our network of volunteers gets notified. We'll coordinate a convenient time to pick up the donation from your address.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">3. You Change a Life</h3>
+                        <p class="text-gray-600">Your donation is delivered directly to a local shelter or community in need, providing a warm meal and hope.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="quotes" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+             <h2 class="text-3xl md:text-4xl font-serif font-bold mb-12">Words to Inspire</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="mb-8"><p class="font-serif text-2xl italic">"The best way to find yourself is to lose yourself in the service of others."</p><p class="mt-2 text-gray-400">- Mahatma Gandhi</p></div>
+                <div class="mb-8"><p class="font-serif text-2xl italic">"No one has ever become poor by giving."</p><p class="mt-2 text-gray-400">- Anne Frank</p></div>
+                <div class="mb-8 md:col-span-2"><p class="font-serif text-2xl italic">"We make a living by what we get, but we make a life by what we give."</p><p class="mt-2 text-gray-400">- Winston Churchill</p></div>
+            </div>
+            <p class="text-gray-500 mt-12">&copy; 2025 StreetBites. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="script.js" type="module"></script>
+</body>
+</html>
