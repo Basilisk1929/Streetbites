@@ -1,7 +1,9 @@
 import { app } from './firebase-config.js';
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
 
-const functions = getFunctions(app);
+// ** THE FIX IS HERE **
+// Specify the correct region for your Cloud Functions
+const functions = getFunctions(app, 'asia-south1');
 
 // Get references to the form and its elements
 const donationForm = document.getElementById('donation-form');
@@ -21,7 +23,7 @@ if (formTitle) {
 
 
 // Listen for the form submission
-donationForm.addEventListener('submit', async (e) => {
+donationForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent the default form submission
 
     // Show a loading state on the button
@@ -42,43 +44,47 @@ donationForm.addEventListener('submit', async (e) => {
         return;
     }
 
-    try {
-        // Execute reCAPTCHA to get a token
-        grecaptcha.ready(async () => {
-            const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+    // Execute reCAPTCHA
+    grecaptcha.ready(() => {
+        // Use an async IIFE (Immediately Invoked Function Expression)
+        // to correctly handle errors inside the callback.
+        (async () => {
+            try {
+                const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
 
-            // Collect the form data into an object
-            const formData = new FormData(donationForm);
-            const donationData = {};
-            formData.forEach((value, key) => {
-                donationData[key] = value;
-            });
-            donationData.type = donationType; // Add the donation type
+                // Collect the form data into an object
+                const formData = new FormData(donationForm);
+                const donationData = {};
+                formData.forEach((value, key) => {
+                    donationData[key] = value;
+                });
+                donationData.type = donationType; // Add the donation type
 
-            // Call the secure Cloud Function
-            const submitDonation = httpsCallable(functions, 'submitDonation');
-            const result = await submitDonation({ donationData, recaptchaToken: token });
+                // Call the secure Cloud Function
+                const submitDonation = httpsCallable(functions, 'submitDonation');
+                const result = await submitDonation({ donationData, recaptchaToken: token });
 
-            // Handle success
-            console.log(result.data.message);
-            showFeedback('Thank you! Your donation has been submitted successfully. Redirecting home...', 'success');
-            donationForm.reset();
+                // Handle success
+                console.log(result.data.message);
+                showFeedback('Thank you! Your donation has been submitted successfully. Redirecting home...', 'success');
+                donationForm.reset();
 
-            // *** NEW: Redirect after a delay ***
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 4000); // Wait 4 seconds before redirecting
+                // Redirect after a delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 4000);
 
-        });
-    } catch (error) {
-        // Handle errors
-        console.error('Error submitting donation:', error);
-        showFeedback(error.message || 'An unknown error occurred. Please try again.', 'error');
-        
-        // Restore the button's original state after error
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Donation';
-    }
+            } catch (error) {
+                // Handle any errors from the async operations
+                console.error('Error submitting donation:', error);
+                showFeedback(error.message || 'An unknown error occurred. Please try again.', 'error');
+                
+                // Restore the button's original state after the error
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Donation';
+            }
+        })();
+    });
 });
 
 
